@@ -25,33 +25,8 @@ export default {
     components:{
         HeaderComp,
         FooterComp
-    },
-
-    data(){
-
-        return{
-
-            apiUrl: 'http://127.0.0.1:8000/api/posts',
-            posts: null
-        }
-    },
-
-    methods:{
-
-        getApi(){
-
-            axios.get(this.apiUrl)
-            .then(res => {
-                this.posts = res.data.posts;
-            })
-        }
-
-    },
-
-    mounted(){
-
-        this.getApi();
     }
+
 
 }
 </script>
