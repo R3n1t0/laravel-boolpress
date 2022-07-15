@@ -1967,8 +1967,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get(this.apiUrl).then(function (res) {
-        _this.posts = res.data.posts;
-        console.log(_this.posts);
+        _this.posts = res.data;
       });
     }
   }
