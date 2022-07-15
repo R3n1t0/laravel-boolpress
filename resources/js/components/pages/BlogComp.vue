@@ -1,6 +1,9 @@
 <template>
   <div class="container post-container">
     <h1>Elenco dei post</h1>
+        <div v-if="posts.length == 0">
+            <LoaderComp />
+        </div>
         <div v-if="posts.length > 0">
             <PostItem
                 v-for="post in posts"
@@ -24,12 +27,14 @@
 
 <script>
 import PostItem from '../partials/PostItem.vue'
+import LoaderComp from '../partials/LoaderComp.vue'
 
 export default {
     name: 'BlogComp',
 
     components: {
-        PostItem
+        PostItem,
+        LoaderComp
     },
 
     data(){
