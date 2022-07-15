@@ -1973,7 +1973,7 @@ __webpack_require__.r(__webpack_exports__);
     getApi: function getApi(page) {
       var _this = this;
 
-      axios.get(this.apiUrl + "?page" + page).then(function (res) {
+      axios.get(this.apiUrl + "?page=" + page).then(function (res) {
         _this.posts = res.data.data;
         _this.pagination = {
           current: res.data.current_page,
@@ -2074,6 +2074,20 @@ __webpack_require__.r(__webpack_exports__);
   name: 'PostItem',
   props: {
     post: Object
+  },
+  computed: {
+    shortContent: function shortContent() {
+      return this.post.content.substr(0, 200) + "...";
+    },
+    formDate: function formDate() {
+      var d = new Date(this.post.updated_at);
+      var day = d.getDate();
+      var month = d.getMonth() + 1;
+      var year = d.getFullYear();
+      if (day < 10) day = '0' + day;
+      if (month < 10) month = '0' + month;
+      return "".concat(day, "/").concat(month, "/").concat(year);
+    }
   }
 });
 
@@ -2160,7 +2174,7 @@ var render = function render() {
     });
   }), 1) : _vm._e(), _vm._v(" "), _c("button", {
     attrs: {
-      disabled: _vm.pagination.current == 1
+      disabled: _vm.pagination.current === 1
     },
     on: {
       click: function click($event) {
@@ -2171,7 +2185,7 @@ var render = function render() {
     return _c("button", {
       key: i,
       attrs: {
-        disabled: _vm.pagination.current == i
+        disabled: _vm.pagination.current === i
       },
       on: {
         click: function click($event) {
@@ -2181,7 +2195,7 @@ var render = function render() {
     }, [_vm._v(_vm._s(i))]);
   }), _vm._v(" "), _c("button", {
     attrs: {
-      disabled: _vm.pagination.current == _vm.pagination.last
+      disabled: _vm.pagination.current === _vm.pagination.last
     },
     on: {
       click: function click($event) {
@@ -2379,7 +2393,7 @@ var render = function render() {
 
   return _c("div", {
     staticClass: "item-container"
-  }, [_c("h3", [_vm._v(_vm._s(_vm.post.title))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.post.content))])]);
+  }, [_c("h3", [_vm._v(_vm._s(_vm.post.title))]), _vm._v(" "), _c("i", [_vm._v(_vm._s(_vm.formDate))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.shortContent))])]);
 };
 
 var staticRenderFns = [];

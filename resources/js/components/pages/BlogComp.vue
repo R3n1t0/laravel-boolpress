@@ -12,16 +12,16 @@
             />
         </div>
         <button @click="getApi(pagination.current - 1)"
-                :disabled="pagination.current == 1"><<</button>
+                :disabled="pagination.current === 1"><<</button>
 
         <button
                 v-for="i in pagination.last"
                 :key="i"
                 @click="getApi(i)"
-                :disabled="pagination.current == i">{{ i }}</button>
+                :disabled="pagination.current === i">{{ i }}</button>
 
         <button @click="getApi(pagination.current + 1)"
-                :disabled="pagination.current == pagination.last">>></button>
+                :disabled="pagination.current === pagination.last">>></button>
   </div>
 </template>
 
@@ -54,16 +54,19 @@ export default {
 
     methods:{
         getApi(page){
-            axios.get(this.apiUrl + "?page" + page)
+            axios.get(this.apiUrl + "?page=" + page)
             .then(res=>{
 
                 this.posts = res.data.data;
                 this.pagination = {
                     current: res.data.current_page,
-                    last: res.data.last_page
+                    last: res.data.last_page,
+
                 }
 
             })
+
+
         }
     }
 }
