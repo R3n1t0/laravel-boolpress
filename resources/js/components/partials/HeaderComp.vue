@@ -3,10 +3,10 @@
 
         <ul>
             <li>
-                <a href="#">Home</a>
-                <a href="#">Blog</a>
-                <a href="#">Chi Siamo</a>
-                <a href="#">Contatti</a>
+                <router-link :to='{name: "home"}'>Home</router-link>
+                <router-link :to='{name: "blog"}'>Blog</router-link>
+                <router-link :to='{name: "about"}'>Chi Siamo</router-link>
+                <router-link :to='{name: "contacts"}'>Contatti</router-link>
             </li>
         </ul>
 

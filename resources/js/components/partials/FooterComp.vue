@@ -12,8 +12,10 @@ export default {
 footer{
     width: 100%;
     height: 80px;
+    color: white;
+    background-color: rgb(19, 17, 48);
     text-align: center;
-    margin-top: 20px;
+    padding: 20px;
 }
 
 </style>

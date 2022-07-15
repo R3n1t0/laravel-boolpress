@@ -8,6 +8,7 @@ Vue.use(VueRouter);
 import HomeComp from './components/pages/HomeComp';
 import AboutComp from './components/pages/AboutComp';
 import ContactsComp from './components/pages/ContactsComp';
+import BlogComp from './components/pages/BlogComp';
 
 const router = new VueRouter({
     mode: 'history',
@@ -18,14 +19,19 @@ const router = new VueRouter({
             component: HomeComp
         },
         {
-            path: '/',
-            name: 'home',
+            path: '/chi-siamo',
+            name: 'about',
             component: AboutComp
         },
         {
-            path: '/',
-            name: 'home',
+            path: '/contatti',
+            name: 'contacts',
             component: ContactsComp
+        },
+        {
+            path: '/blog',
+            name: 'blog',
+            component: BlogComp
         }
     ]
 });

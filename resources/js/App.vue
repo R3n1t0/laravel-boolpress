@@ -3,18 +3,9 @@
 
         <HeaderComp />
 
-        <div class="container">
-
-            <ul>
-                <li
-                    v-for="post in posts"
-                    :key="post.id">
-                    <h3>{{post.title}}</h3>
-                    <p>{{post.content}}</p>
-                </li>
-            </ul>
-
-        </div>
+        <main>
+            <router-view></router-view>
+        </main>
 
         <FooterComp />
 
