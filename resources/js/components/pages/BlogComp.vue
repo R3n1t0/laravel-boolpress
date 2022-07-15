@@ -4,7 +4,8 @@
         <div>
             <PostItem
                 v-for="post in posts"
-                :key='post.id'
+                :key="post.id"
+                :post= 'post'
             />
         </div>
   </div>
@@ -35,7 +36,8 @@ export default {
         getApi(){
             axios.get(this.apiUrl)
             .then(res=>{
-                this.posts = res.data;
+
+                this.posts = res.data.posts;
                 console.log(this.posts);
             })
         }
@@ -43,6 +45,10 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang='scss' scoped>
+.post-container{
+    h1{
+        padding-bottom: 20px;
+    }
+}
 </style>

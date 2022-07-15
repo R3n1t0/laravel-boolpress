@@ -1,16 +1,23 @@
 <template>
-  <div>
-    <h3>titolo</h3>
-    <p>contenuto</p>
+  <div class="item-container">
+    <h3>{{post.title}}</h3>
+    <p>{{post.content}}</p>
   </div>
 </template>
 
 <script>
 export default {
-    name: PostItem
+    name: 'PostItem',
+
+    props: {
+        post: Object
+    }
+
 }
 </script>
 
-<style>
-
+<style lang='scss' scoped>
+.item-container{
+    margin-bottom: 20px;
+}
 </style>
