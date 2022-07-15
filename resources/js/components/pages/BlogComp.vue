@@ -1,7 +1,7 @@
 <template>
   <div class="container post-container">
     <h1>Elenco dei post</h1>
-        <div>
+        <div v-if="posts.length > 0">
             <PostItem
                 v-for="post in posts"
                 :key="post.id"
@@ -24,7 +24,7 @@ export default {
     data(){
         return{
             apiUrl: '/api/posts',
-            posts: null
+            posts: []
         }
     },
 
@@ -37,7 +37,7 @@ export default {
             axios.get(this.apiUrl)
             .then(res=>{
 
-                this.posts = res.data;
+                this.posts = res.data.data;
 
             })
         }

@@ -1956,7 +1956,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       apiUrl: '/api/posts',
-      posts: null
+      posts: []
     };
   },
   mounted: function mounted() {
@@ -1967,7 +1967,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get(this.apiUrl).then(function (res) {
-        _this.posts = res.data;
+        _this.posts = res.data.data;
       });
     }
   }
@@ -2125,14 +2125,14 @@ var render = function render() {
 
   return _c("div", {
     staticClass: "container post-container"
-  }, [_c("h1", [_vm._v("Elenco dei post")]), _vm._v(" "), _c("div", _vm._l(_vm.posts, function (post) {
+  }, [_c("h1", [_vm._v("Elenco dei post")]), _vm._v(" "), _vm.posts.length > 0 ? _c("div", _vm._l(_vm.posts, function (post) {
     return _c("PostItem", {
       key: post.id,
       attrs: {
         post: post
       }
     });
-  }), 1)]);
+  }), 1) : _vm._e()]);
 };
 
 var staticRenderFns = [];
@@ -2218,7 +2218,7 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("footer", [_vm._v("Footer")]);
+  return _c("footer", [_vm._v("Boorlean")]);
 };
 
 var staticRenderFns = [];

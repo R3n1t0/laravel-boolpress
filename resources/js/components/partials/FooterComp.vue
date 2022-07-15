@@ -1,5 +1,5 @@
 <template>
-  <footer>Footer</footer>
+  <footer>Boorlean</footer>
 </template>
 
 <script>
