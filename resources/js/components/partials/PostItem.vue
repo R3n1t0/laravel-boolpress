@@ -18,6 +18,7 @@ export default {
 
 <style lang='scss' scoped>
 .item-container{
-    margin-bottom: 20px;
+
+    padding-bottom: 20px;
 }
 </style>

@@ -1956,18 +1956,26 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       apiUrl: '/api/posts',
-      posts: []
+      posts: [],
+      pagination: {
+        current: null,
+        last: null
+      }
     };
   },
   mounted: function mounted() {
-    this.getApi();
+    this.getApi(1);
   },
   methods: {
-    getApi: function getApi() {
+    getApi: function getApi(page) {
       var _this = this;
 
-      axios.get(this.apiUrl).then(function (res) {
+      axios.get(this.apiUrl + "?page" + page).then(function (res) {
         _this.posts = res.data.data;
+        _this.pagination = {
+          current: res.data.current_page,
+          last: res.data.last_page
+        };
       });
     }
   }
@@ -2132,7 +2140,37 @@ var render = function render() {
         post: post
       }
     });
-  }), 1) : _vm._e()]);
+  }), 1) : _vm._e(), _vm._v(" "), _c("button", {
+    attrs: {
+      disabled: _vm.pagination.current == 1
+    },
+    on: {
+      click: function click($event) {
+        return _vm.getApi(_vm.pagination.current - 1);
+      }
+    }
+  }, [_vm._v("<<")]), _vm._v(" "), _vm._l(_vm.pagination.last, function (i) {
+    return _c("button", {
+      key: i,
+      attrs: {
+        disabled: _vm.pagination.current == i
+      },
+      on: {
+        click: function click($event) {
+          return _vm.getApi(i);
+        }
+      }
+    }, [_vm._v(_vm._s(i))]);
+  }), _vm._v(" "), _c("button", {
+    attrs: {
+      disabled: _vm.pagination.current == _vm.pagination.last
+    },
+    on: {
+      click: function click($event) {
+        return _vm.getApi(_vm.pagination.current + 1);
+      }
+    }
+  }, [_vm._v(">>")])], 2);
 };
 
 var staticRenderFns = [];
@@ -2313,7 +2351,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".post-container h1[data-v-02893632] {\n  padding-bottom: 20px;\n}", ""]);
+exports.push([module.i, ".post-container h1[data-v-02893632] {\n  padding-bottom: 20px;\n}\n.post-container button[data-v-02893632] {\n  padding: 5px;\n}", ""]);
 
 // exports
 
@@ -2370,7 +2408,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".item-container[data-v-49c43f95] {\n  margin-bottom: 20px;\n}", ""]);
+exports.push([module.i, ".item-container[data-v-49c43f95] {\n  padding-bottom: 20px;\n}", ""]);
 
 // exports
 

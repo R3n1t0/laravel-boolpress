@@ -36,7 +36,9 @@ header{
                 color: black;
                 text-decoration: none;
                 margin: 0 10px;
+
                 &:hover{
+
                     text-decoration: underline;
                 }
                 &.active {
