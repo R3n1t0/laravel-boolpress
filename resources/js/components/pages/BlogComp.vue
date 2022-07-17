@@ -28,6 +28,7 @@
 <script>
 import PostItem from '../partials/PostItem.vue'
 import LoaderComp from '../partials/LoaderComp.vue'
+import {apiUrl} from '../../data/config'
 
 export default {
     name: 'BlogComp',
@@ -39,7 +40,7 @@ export default {
 
     data(){
         return{
-            apiUrl: '/api/posts',
+            apiUrl,
             posts: [],
             pagination:{
                 current: null,

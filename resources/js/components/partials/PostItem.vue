@@ -1,6 +1,9 @@
 <template>
   <div class="item-container">
-    <h3>{{post.title}}</h3>
+    <h3>
+        <router-link :to="{name: 'detail', params:{slug: post.slug}}">{{post.title}}</router-link>
+    </h3>
+
     <i>{{formDate}}</i>
     <p>{{shortContent}}</p>
   </div>
@@ -8,6 +11,7 @@
 
 <script>
 export default {
+
     name: 'PostItem',
 
     props: {
