@@ -1,6 +1,8 @@
 <template>
   <div class="container post-container">
-    <h1>Elenco dei post</h1>
+    <!-- Elenco posts -->
+    <div>
+            <h1>Elenco dei post</h1>
         <div v-if="posts.length == 0">
             <LoaderComp />
         </div>
@@ -22,12 +24,18 @@
 
         <button @click="getApi(pagination.current + 1)"
                 :disabled="pagination.current === pagination.last">>></button>
+    </div>
+
+    <!--Sidebar con Categorie e tags -->
+    <SideBarComp />
+
   </div>
 </template>
 
 <script>
 import PostItem from '../partials/PostItem.vue'
 import LoaderComp from '../partials/LoaderComp.vue'
+import SideBarComp from '../partials/SideBarComp.vue'
 import {apiUrl} from '../../data/config'
 
 export default {
@@ -35,7 +43,8 @@ export default {
 
     components: {
         PostItem,
-        LoaderComp
+        LoaderComp,
+        SideBarComp
     },
 
     data(){
@@ -45,7 +54,9 @@ export default {
             pagination:{
                 current: null,
                 last: null
-            }
+            },
+            categories: [],
+            tags: []
         }
     },
 
@@ -58,13 +69,13 @@ export default {
             axios.get(this.apiUrl + "?page=" + page)
             .then(res=>{
 
-                this.posts = res.data.data;
+                this.posts = res.data.posts.data;
                 this.pagination = {
-                    current: res.data.current_page,
-                    last: res.data.last_page,
-
+                    current: res.data.posts.current_page,
+                    last: res.data.posts.last_page,
                 }
-
+                this.categories = res.data.categories;
+                this.tags = res.data.tags;
             })
 
 
@@ -75,6 +86,7 @@ export default {
 
 <style lang='scss' scoped>
 .post-container{
+    display: flex;
     h1{
 
         padding-bottom: 20px;
