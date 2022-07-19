@@ -1989,6 +1989,16 @@ __webpack_require__.r(__webpack_exports__);
         _this.categories = res.data.categories;
         _this.tags = res.data.tags;
       });
+    },
+    searchPostByCategory: function searchPostByCategory(slug_category) {
+      axios.get(this.apiUrl + '/post-category/' + slug_category).then(function (res) {
+        console.log(res.data);
+      });
+    },
+    searchPostByTag: function searchPostByTag(slug_tag) {
+      axios.get(this.apiUrl + '/tag-category/' + slug_tag).then(function (res) {
+        console.log(res.data);
+      });
     }
   }
 });
@@ -2270,7 +2280,16 @@ var render = function render() {
         return _vm.getApi(_vm.pagination.current + 1);
       }
     }
-  }, [_vm._v(">>")])], 2), _vm._v(" "), _c("SideBarComp")], 1);
+  }, [_vm._v(">>")])], 2), _vm._v(" "), _c("SideBarComp", {
+    attrs: {
+      categories: _vm.categories,
+      tags: _vm.tags
+    },
+    on: {
+      searchPostByCategory: _vm.searchPostByCategory,
+      searchPostByTag: _vm.searchPostByTag
+    }
+  })], 1);
 };
 
 var staticRenderFns = [];
@@ -2526,19 +2545,32 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _vm._m(0);
-};
-
-var staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
   return _c("div", [_c("div", {
     staticClass: "list"
-  }, [_c("h3", [_vm._v("Categorie")]), _vm._v(" "), _c("ul", [_c("li")])]), _vm._v(" "), _c("div", {
+  }, [_c("h3", [_vm._v("Categorie")]), _vm._v(" "), _c("ul", _vm._l(_vm.categories, function (category) {
+    return _c("li", {
+      key: "cat".concat(category.id),
+      on: {
+        click: function click($event) {
+          return _vm.$emit("searchPostByCategory", category.slug);
+        }
+      }
+    }, [_vm._v(_vm._s(category.name))]);
+  }), 0)]), _vm._v(" "), _c("div", {
     staticClass: "list"
-  }, [_c("h3", [_vm._v("Tag")]), _vm._v(" "), _c("ul", [_c("li")])])]);
-}];
+  }, [_c("h3", [_vm._v("Tag")]), _vm._v(" "), _c("ul", _vm._l(_vm.tags, function (tag) {
+    return _c("li", {
+      key: "cat".concat(tag.id),
+      on: {
+        click: function click($event) {
+          return _vm.$emit("searchPostByTag", tag.slug);
+        }
+      }
+    }, [_vm._v(_vm._s(tag.name))]);
+  }), 0)])]);
+};
+
+var staticRenderFns = [];
 render._withStripped = true;
 
 
@@ -2670,7 +2702,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".list[data-v-497c4e99] {\n  margin-bottom: 20px;\n}", ""]);
+exports.push([module.i, ".list[data-v-497c4e99] {\n  margin-bottom: 20px;\n}\n.list ul[data-v-497c4e99] {\n  list-style: none;\n}\n.list ul li[data-v-497c4e99] {\n  cursor: pointer;\n}", ""]);
 
 // exports
 

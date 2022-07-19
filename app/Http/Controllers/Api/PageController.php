@@ -25,4 +25,20 @@ class PageController extends Controller
         return response()->json($post);
 
     }
+
+    public function getPostByCategory($slug_category){
+
+        $category = Category::where('slug', $slug_category)->whith('posts')->first();
+
+        return response()->json($category);
+
+    }
+
+    public function getPostByTag($slug_tag){
+
+        $tag = Tag::where('slug', $slug_tag)->whith('posts')->first();
+
+        return response()->json($tag);
+
+    }
 }

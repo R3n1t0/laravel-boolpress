@@ -27,7 +27,12 @@
     </div>
 
     <!--Sidebar con Categorie e tags -->
-    <SideBarComp />
+    <SideBarComp
+        :categories="categories"
+        :tags="tags"
+        @searchPostByCategory = 'searchPostByCategory'
+        @searchPostByTag = 'searchPostByTag'
+    />
 
   </div>
 </template>
@@ -79,6 +84,21 @@ export default {
             })
 
 
+        },
+
+        searchPostByCategory(slug_category){
+            axios.get(this.apiUrl + '/post-category/' + slug_category)
+            .then(res => {
+                console.log(res.data);
+            })
+
+        },
+
+        searchPostByTag(slug_tag){
+            axios.get(this.apiUrl + '/tag-category/' + slug_tag)
+            .then(res => {
+                console.log(res.data);
+            })
         }
     }
 }
