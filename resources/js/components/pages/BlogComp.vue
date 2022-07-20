@@ -98,8 +98,9 @@ export default {
 
             axios.get(this.apiUrl + '/post-category/' + slug_category)
             .then(res => {
-                /* this.posts = res.data.posts */
-                console.log(res.data);
+
+                this.posts = res.data.posts
+
             })
 
         },
@@ -110,7 +111,7 @@ export default {
             axios.get(this.apiUrl + '/post-tag/' + slug_tag)
             .then(res => {
 
-                console.log(res.data);
+                this.posts = res.data.posts
             })
         }
     }

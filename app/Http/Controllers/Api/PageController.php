@@ -28,7 +28,7 @@ class PageController extends Controller
 
     public function getPostByCategory($slug_category){
 
-        $category = Category::where('slug', $slug_category)->whith('posts')->first();
+        $category = Category::where('slug', $slug_category)->with('posts')->first();
 
         return response()->json($category);
 
@@ -36,7 +36,7 @@ class PageController extends Controller
 
     public function getPostByTag($slug_tag){
 
-        $tag = Tag::where('slug', $slug_tag)->whith('posts')->first();
+        $tag = Tag::where('slug', $slug_tag)->with('posts')->first();
 
         return response()->json($tag);
 

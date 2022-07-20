@@ -1991,14 +1991,17 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     searchPostByCategory: function searchPostByCategory(slug_category) {
+      var _this2 = this;
+
       axios.get(this.apiUrl + '/post-category/' + slug_category).then(function (res) {
-        /* this.posts = res.data.posts */
-        console.log(res.data);
+        _this2.posts = res.data.posts;
       });
     },
     searchPostByTag: function searchPostByTag(slug_tag) {
+      var _this3 = this;
+
       axios.get(this.apiUrl + '/post-tag/' + slug_tag).then(function (res) {
-        console.log(res.data);
+        _this3.posts = res.data.posts;
       });
     }
   }
