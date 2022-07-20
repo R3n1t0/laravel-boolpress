@@ -1992,6 +1992,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     searchPostByCategory: function searchPostByCategory(slug_category) {
       axios.get(this.apiUrl + '/post-category/' + slug_category).then(function (res) {
+        /* this.posts = res.data.posts */
         console.log(res.data);
       });
     },
@@ -2243,14 +2244,14 @@ var render = function render() {
 
   return _c("div", {
     staticClass: "container post-container"
-  }, [_c("div", [_c("h1", [_vm._v("Elenco dei post")]), _vm._v(" "), _vm.posts.length == 0 ? _c("div", [_c("LoaderComp")], 1) : _vm._e(), _vm._v(" "), _vm.posts.length > 0 ? _c("div", _vm._l(_vm.posts, function (post) {
+  }, [_c("div", [!_vm.posts ? _c("div", [_c("LoaderComp")], 1) : _c("div", [_c("div", [_c("h1", [_vm._v("Elenco dei post")]), _vm._v(" "), _vm._l(_vm.posts, function (post) {
     return _c("PostItem", {
       key: post.id,
       attrs: {
         post: post
       }
     });
-  }), 1) : _vm._e(), _vm._v(" "), _c("button", {
+  }), _vm._v(" "), _c("button", {
     attrs: {
       disabled: _vm.pagination.current === 1
     },
@@ -2261,7 +2262,7 @@ var render = function render() {
     }
   }, [_vm._v("<<")]), _vm._v(" "), _vm._l(_vm.pagination.last, function (i) {
     return _c("button", {
-      key: i,
+      key: "btn".concat(i),
       attrs: {
         disabled: _vm.pagination.current === i
       },
@@ -2280,7 +2281,7 @@ var render = function render() {
         return _vm.getApi(_vm.pagination.current + 1);
       }
     }
-  }, [_vm._v(">>")])], 2), _vm._v(" "), _c("SideBarComp", {
+  }, [_vm._v(">>")])], 2)])]), _vm._v(" "), _c("SideBarComp", {
     attrs: {
       categories: _vm.categories,
       tags: _vm.tags

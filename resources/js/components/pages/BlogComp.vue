@@ -2,28 +2,36 @@
   <div class="container post-container">
     <!-- Elenco posts -->
     <div>
-            <h1>Elenco dei post</h1>
-        <div v-if="posts.length == 0">
+
+        <div v-if="!posts">
             <LoaderComp />
         </div>
-        <div v-if="posts.length > 0">
-            <PostItem
-                v-for="post in posts"
-                :key="post.id"
-                :post= 'post'
-            />
+        <div v-else>
+
+            <div>
+                <h1>Elenco dei post</h1>
+                <PostItem
+                    v-for="post in posts"
+                    :key="post.id"
+                    :post= 'post'
+                />
+
+                <button @click="getApi(pagination.current - 1)"
+                    :disabled="pagination.current === 1"><<</button>
+
+                <button
+                    v-for="i in pagination.last"
+                    :key="`btn${i}`"
+                    @click="getApi(i)"
+                    :disabled="pagination.current === i">{{ i }}</button>
+
+                <button @click="getApi(pagination.current + 1)"
+                    :disabled="pagination.current === pagination.last">>></button>
+
+            </div>
+
         </div>
-        <button @click="getApi(pagination.current - 1)"
-                :disabled="pagination.current === 1"><<</button>
 
-        <button
-                v-for="i in pagination.last"
-                :key="i"
-                @click="getApi(i)"
-                :disabled="pagination.current === i">{{ i }}</button>
-
-        <button @click="getApi(pagination.current + 1)"
-                :disabled="pagination.current === pagination.last">>></button>
     </div>
 
     <!--Sidebar con Categorie e tags -->
@@ -87,16 +95,22 @@ export default {
         },
 
         searchPostByCategory(slug_category){
+
+
             axios.get(this.apiUrl + '/post-category/' + slug_category)
             .then(res => {
+                /* this.posts = res.data.posts */
                 console.log(res.data);
             })
 
         },
 
         searchPostByTag(slug_tag){
+
+
             axios.get(this.apiUrl + '/tag-category/' + slug_tag)
             .then(res => {
+
                 console.log(res.data);
             })
         }

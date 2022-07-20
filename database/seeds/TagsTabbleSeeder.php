@@ -21,7 +21,7 @@ class TagsTabbleSeeder extends Seeder
 
             $new_tag = new Tag();
             $new_tag->name= $tag;
-            $new_tag->slug= Str::slug('slug', '-');
+            $new_tag->slug= Str::slug($tag, '-');
             $new_tag->save();
 
         }
