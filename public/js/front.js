@@ -1997,7 +1997,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     searchPostByTag: function searchPostByTag(slug_tag) {
-      axios.get(this.apiUrl + '/tag-category/' + slug_tag).then(function (res) {
+      axios.get(this.apiUrl + '/post-tag/' + slug_tag).then(function (res) {
         console.log(res.data);
       });
     }

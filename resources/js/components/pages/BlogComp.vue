@@ -7,7 +7,6 @@
             <LoaderComp />
         </div>
         <div v-else>
-
             <div>
                 <h1>Elenco dei post</h1>
                 <PostItem
@@ -108,7 +107,7 @@ export default {
         searchPostByTag(slug_tag){
 
 
-            axios.get(this.apiUrl + '/tag-category/' + slug_tag)
+            axios.get(this.apiUrl + '/post-tag/' + slug_tag)
             .then(res => {
 
                 console.log(res.data);
